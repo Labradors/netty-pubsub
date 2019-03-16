@@ -16,11 +16,11 @@ import cn.dbw.server.BrokeServer;
 
 public class ZkRegister {
 	
-	/** zookeeper¼¯ÈºµØÖ· */
+	/** zookeeperé›†ç¾¤åœ°å€ */
 	static final String CONNECT_ADDR_CLUSTER = "192.168.1.31:2181,192.168.1.32:2181,192.168.1.33:2181";
-	/** zookeeperµ¥½ÚµãµØÖ· */
+	/** zookeeperå•èŠ‚ç‚¹åœ°å€ */
 	static final String CONNECT_ADDR_SINGLE="127.0.0.1:2181";
-	/** session³¬Ê±Ê±¼ä */
+	/** sessionè¶…æ—¶æ—¶é—´ */
 	static final int SESSION_OUTTIME = 10000;//ms
 	
 	static final String ROOT_PATH="/broker_active";
@@ -52,21 +52,21 @@ public class ZkRegister {
 	}
 		
 	/**
-	 * zookeeper½Úµã×¢²á
-	 * @param path  ×Ó½Úµã¾ø¶ÔÂ·¾¶
-	 * @param data  ×Ó½Úµãip:port
+	 * zookeeperèŠ‚ç‚¹æ³¨å†Œ
+	 * @param path  å­èŠ‚ç‚¹ç»å¯¹è·¯å¾„
+	 * @param data  å­èŠ‚ç‚¹ip:port
 	 */
 	public void register(String path,Object data){
 		  zkc=new ZkClient(new ZkConnection(CONNECT_ADDR_SINGLE),SESSION_OUTTIME);
 		  if(!zkc.exists(ROOT_PATH)){
 	        	zkc.createPersistent(ROOT_PATH,"brokerList");
-	        	LOGGER.info("¡¾zk½Úµã³õÊ¼»¯³É¹¦¡¿");
+	        	LOGGER.info("ã€zkèŠ‚ç‚¹åˆå§‹åŒ–æˆåŠŸã€‘");
 	        };
-	        //´´½¨ÁÙÊ±½Úµã
+	        //åˆ›å»ºä¸´æ—¶èŠ‚ç‚¹
 	        String createEphemeralSequential = zkc.createEphemeralSequential(path, data);
-	        //ÉèÖÃµ±Ç°zkÂ·¾¶
+	        //è®¾ç½®å½“å‰zkè·¯å¾„
 	        this.currentZKPath=createEphemeralSequential;
-	        LOGGER.info("¡¾broker×¢²á¡¿path->"+createEphemeralSequential+" data->"+data+" status=SUCCESS");
+	        LOGGER.info("ã€brokeræ³¨å†Œã€‘path->"+createEphemeralSequential+" data->"+data+" status=SUCCESS");
 	}
 	
 	public void recordZkTopic(String path,String topic){

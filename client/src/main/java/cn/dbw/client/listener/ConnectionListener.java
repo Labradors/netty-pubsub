@@ -26,9 +26,9 @@ public class ConnectionListener implements ChannelFutureListener {
 	
 	    private  static   AtomicInteger retryCount=new AtomicInteger(0);
 
-	    private final int TRY_LIMITE=15; //ÖØÁ¬´ÎÊı×î´óÏŞÖÆ
+	    private final int TRY_LIMITE=15; //é‡è¿æ¬¡æ•°æœ€å¤§é™åˆ¶
 
-	    private int dalayTime=1; //¶¨Ê±ÑÓÆÚÊ±¼ä
+	    private int dalayTime=1; //å®šæ—¶å»¶æœŸæ—¶é—´
 
 		@Override
 		public void operationComplete(ChannelFuture future) throws Exception {
@@ -38,25 +38,25 @@ public class ConnectionListener implements ChannelFutureListener {
 	               if(!eventExecutors.isShuttingDown()){
 	               eventExecutors.schedule(()->{
 	                   if(retryCount.get()<=TRY_LIMITE) {      
-	                	   LOGGER.error("¡¾¿Í»§¶Ë×´Ì¬¡¿STATUS=failed,TIME="+ DateUtils.getCurrentDateTime()+",msg=ÕıÔÚ³¢ÊÔÖØÁ¬,retrys="+retryCount.getAndIncrement());
+	                	   LOGGER.error("ã€å®¢æˆ·ç«¯çŠ¶æ€ã€‘STATUS=failed,TIME="+ DateUtils.getCurrentDateTime()+",msg=æ­£åœ¨å°è¯•é‡è¿,retrys="+retryCount.getAndIncrement());
 	                	   NettyClient.INSTANCE.start();
 	                   }else{
 	                	   NettyClient.INSTANCE.stop();
-	                       LOGGER.error("¡¾ÖØÁ¬¾¯¸æ¡¿ÒÑ³¬¹ı×î´óÖØÁ¬´ÎÊı£¬³ÌĞò¹Ø±Õ");
+	                       LOGGER.error("ã€é‡è¿è­¦å‘Šã€‘å·²è¶…è¿‡æœ€å¤§é‡è¿æ¬¡æ•°ï¼Œç¨‹åºå…³é—­");
 	                   }
 	               },dalayTime,TimeUnit.SECONDS);
-	               dalayTime=dalayTime<<1;//ÖØÁ¬´ÎÊıÔ½¶à£¬ÑÓ³ÙÊ±¼äÔ½³¤
+	               dalayTime=dalayTime<<1;//é‡è¿æ¬¡æ•°è¶Šå¤šï¼Œå»¶è¿Ÿæ—¶é—´è¶Šé•¿
 	               }
 	           }else{
-	        	   LOGGER.info("¡¾¿Í»§¶Ë×´Ì¬¡¿STATUS=ACTIVE,TIME="+ DateUtils.getCurrentDateTime());
+	        	   LOGGER.info("ã€å®¢æˆ·ç«¯çŠ¶æ€ã€‘STATUS=ACTIVE,TIME="+ DateUtils.getCurrentDateTime());
 	        	   ChannelHolder.setChannel(future.channel());
-//	        	   //ÅĞ¶ÏÉÏ´ÎÊÇ·ñµÇÂ½
+//	        	   //åˆ¤æ–­ä¸Šæ¬¡æ˜¯å¦ç™»é™†
 //	        	   if(!StringUtil.isEmpty(LastLoginRecord.INSTANCE().getLastToken())){
-//	        		   //Ïòbroker·¢ËÍÈÏÖ¤Æ¾Ö¤
-//	        		   System.out.println("·¢ËÍµÇÂ½Æ¾Ö¤");
+//	        		   //å‘brokerå‘é€è®¤è¯å‡­è¯
+//	        		   System.out.println("å‘é€ç™»é™†å‡­è¯");
 //	        		   future.channel().writeAndFlush(new Message(FuncodeEnum.AUTH_USER,(byte)0 , null, LastLoginRecord.INSTANCE().getLastToken().getBytes().length, LastLoginRecord.INSTANCE().getLastToken().getBytes()));
 //	        	   }
-	               //ÈôÖØÁ¬³É¹¦»Ö¸´ÖØÁ¬¼ä¸ô
+	               //è‹¥é‡è¿æˆåŠŸæ¢å¤é‡è¿é—´éš”
 	        	   SubRecorder.recover();
 	               dalayTime=1;
 	               retryCount.set(0);

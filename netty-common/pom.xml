@@ -1,14 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>cn.dbw</groupId>
-    <artifactId>netty-pubsub</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>netty-common</artifactId>
-  
-  <dependencies>
-   <dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.dbw</groupId>
+        <artifactId>netty-pubsub</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>netty-common</artifactId>
+
+    <dependencies>
+        <dependency>
             <groupId>org.objenesis</groupId>
             <artifactId>objenesis</artifactId>
         </dependency>
@@ -22,21 +23,26 @@
             <groupId>com.dyuproject.protostuff</groupId>
             <artifactId>protostuff-runtime</artifactId>
         </dependency>
-                
+
         <dependency>
-         <groupId>org.jodd</groupId>
-        <artifactId>jodd-all</artifactId>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-all</artifactId>
         </dependency>
-        
-            <!-- Netty -->
+
+        <!-- Netty -->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
         </dependency>
-          <!-- dirsuptor 高性能无锁并发框架 -->
+
         <dependency>
-			<groupId>com.bfxy</groupId>
-			<artifactId>disruptor-netty-com</artifactId>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
         </dependency>
-  </dependencies>
+        <!--&lt;!&ndash; dirsuptor 高性能无锁并发框架 &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>com.bfxy</groupId>-->
+            <!--<artifactId>disruptor-netty-com</artifactId>-->
+        <!--</dependency>-->
+    </dependencies>
 </project>

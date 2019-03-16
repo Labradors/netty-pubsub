@@ -12,9 +12,9 @@ import jodd.util.StringUtil;
 public class MemoryTopicHoder  implements TopicHolder{
 	 
 	private static volatile MemoryTopicHoder memoryTopicHoder=null;
-	//´æ´¢Ò»¸öÖ÷Ìâ¶ÔÓ¦µÄ×¢²áchannel
+	//å­˜å‚¨ä¸€ä¸ªä¸»é¢˜å¯¹åº”çš„æ³¨å†Œchannel
 	private Map<String,Set<Channel>> topicContainner=null; 
-	//´æ´¢Ò»¸öchannel¶ÔÓ¦µÄ×¢²áÖ÷Ìâ
+	//å­˜å‚¨ä¸€ä¸ªchannelå¯¹åº”çš„æ³¨å†Œä¸»é¢˜
 	private Map<Channel,Set<String>> channelRecordContainner=null;
 	
     
@@ -40,7 +40,7 @@ public class MemoryTopicHoder  implements TopicHolder{
 		String topicStr=StringTools.toStrUTF(topic);	
 		boolean key = topicContainner.containsKey(topicStr);
 		 if(key){
-			//ÒÆ³ı¸Ãkey
+			//ç§»é™¤è¯¥key
 			topicContainner.remove(topicStr);
 		  }
 		}
@@ -60,7 +60,7 @@ public class MemoryTopicHoder  implements TopicHolder{
 			    topicContainner.put(topicStr, set);
 		  }
 			
-		  //ÏòchannelTopic±íÖĞÌí¼Ó
+		  //å‘channelTopicè¡¨ä¸­æ·»åŠ 
 		  Set<String> chanTopicSet = channelRecordContainner.getOrDefault(channel, null);
 		  if(null==chanTopicSet){
 			  HashSet<String> channelTopicSet = new HashSet<>();

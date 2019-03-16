@@ -20,7 +20,7 @@ import jodd.json.JsonObject;
 import jodd.util.StringUtil;
 
 /**
- * ÊÚÈ¨ÈÏÖ¤
+ * æˆæƒè®¤è¯
  * @author dbw
  *
  */
@@ -30,22 +30,22 @@ public class AuthenticationHandler extends SimpleChannelInboundHandler<Message> 
 
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws Exception {
-		//¶ÁÈ¡ÓÃ»§ĞÅÏ¢
+		//è¯»å–ç”¨æˆ·ä¿¡æ¯
 		byte[] data = msg.getData();
 		String res = new String(data,"utf-8");
-		//ÅĞ¶ÏÊÇ·ñµÚÒ»´ÎµÇÂ½
+		//åˆ¤æ–­æ˜¯å¦ç¬¬ä¸€æ¬¡ç™»é™†
 		if(res.startsWith("{")){
 			JSONObject jsonObject = JSON.parseObject(res);
-			System.out.println("ÊÕµ½ÏûÏ¢"+jsonObject.toString());
+			System.out.println("æ”¶åˆ°æ¶ˆæ¯"+jsonObject.toString());
 			if(null!=jsonObject){
 				String username = jsonObject.getString("username");
 				String password=jsonObject.getString("password");
 				ServerConfig config = configFac.getConfig(ConfigFactory.filaPath);
 				String value = config.getVerifiedAccount().getOrDefault(username, "");
 				if(StringUtil.isEmpty(value)||!value.equals(password)){
-					//ÑéÖ¤Ê§°Ü£¬·¢ËÍÊ§°ÜÏûÏ¢¶Ï¿ªÁ¬½Ó
-					//MessageWrapper messageWrapper = new MessageWrapper(FuncodeEnum.ERROR_INFO, "ÈÏÖ¤Ê§°Ü");
-					ChannelFuture channelFuture = ctx.channel().writeAndFlush(new Message(FuncodeEnum.ERROR_INFO, (byte)0,null , "ÈÏÖ¤Ê§°Ü".getBytes().length, "ÈÏÖ¤Ê§°Ü".getBytes()));
+					//éªŒè¯å¤±è´¥ï¼Œå‘é€å¤±è´¥æ¶ˆæ¯æ–­å¼€è¿æ¥
+					//MessageWrapper messageWrapper = new MessageWrapper(FuncodeEnum.ERROR_INFO, "è®¤è¯å¤±è´¥");
+					ChannelFuture channelFuture = ctx.channel().writeAndFlush(new Message(FuncodeEnum.ERROR_INFO, (byte)0,null , "è®¤è¯å¤±è´¥".getBytes().length, "è®¤è¯å¤±è´¥".getBytes()));
 					channelFuture.addListener(new GenericFutureListener<Future<? super Void>>() {
 						@Override
 						public void operationComplete(Future<? super Void> future) throws Exception {
@@ -56,24 +56,24 @@ public class AuthenticationHandler extends SimpleChannelInboundHandler<Message> 
 						}
 					});   
 				}else{
-					//ÈÏÖ¤³É¹¦Ö®ºó£¬½«ÕËºÅºÍÃÜÂëÆ´½Ó½øĞĞMD5¼ÓÃÜÉú³Étoken£¬·µ»Ø¸ø¿Í»§¶Ë
+					//è®¤è¯æˆåŠŸä¹‹åï¼Œå°†è´¦å·å’Œå¯†ç æ‹¼æ¥è¿›è¡ŒMD5åŠ å¯†ç”Ÿæˆtokenï¼Œè¿”å›ç»™å®¢æˆ·ç«¯
 					String token=MD5Util.getPwd(username+password).substring(0, 16);
-					//¼ÇÂ¼µÇÂ½±í
+					//è®°å½•ç™»é™†è¡¨
 					LastLoginRecord.INSTANCE().register(username, password);
 					ChannelFuture channelFuture = ctx.channel().writeAndFlush(new Message(FuncodeEnum.NOTICE_AUTH_OK, (byte)0,null , token.getBytes().length, token.getBytes()));
-					//ÈÏÖ¤³É¹¦½¨Á¢¹ÜµÀĞÅÏ¢
+					//è®¤è¯æˆåŠŸå»ºç«‹ç®¡é“ä¿¡æ¯
 					ctx.pipeline().addLast( "message-process", new MessageProcessHandler());
 				}
 				
 			}	
 		}else if(!res.equals("$FF$")){
-			System.out.println("ÉÏÒ»´ÎµÇÂ½:"+res);
-			//Èç¹ûÉÏ´ÎÒÑµÇÂ½
+			System.out.println("ä¸Šä¸€æ¬¡ç™»é™†:"+res);
+			//å¦‚æœä¸Šæ¬¡å·²ç™»é™†
 			if(LastLoginRecord.INSTANCE().isLogin(res)){
-				//ÈÏÖ¤³É¹¦½¨Á¢¹ÜµÀĞÅÏ¢
+				//è®¤è¯æˆåŠŸå»ºç«‹ç®¡é“ä¿¡æ¯
 				ctx.pipeline().addLast( "message-process", new MessageProcessHandler());
 			}else{
-				//ÈÏÖ¤Ê§°Ü¶Ï¿ªÁ¬½Ó
+				//è®¤è¯å¤±è´¥æ–­å¼€è¿æ¥
 				ctx.close();
 			}
 		}

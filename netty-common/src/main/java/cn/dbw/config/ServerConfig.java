@@ -16,7 +16,7 @@ public class ServerConfig {
 	
 	private Integer pingTimeout;
 	
-	//�Ƿ�����Ⱥģʽ
+	//是否开启集群模式
 	private Boolean enableCluster;
 	
 	private String zkServers;

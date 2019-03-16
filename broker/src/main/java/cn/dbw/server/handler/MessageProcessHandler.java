@@ -13,7 +13,7 @@ public class MessageProcessHandler extends SimpleChannelInboundHandler<Message> 
 		FuncodeEnum funCode = msg.getFunCode();
 		switch (funCode) {
 		case HEART_BEAT:
-			//ÈôÊÇĞÄÌø°üÔò²»´¦Àí
+			//è‹¥æ˜¯å¿ƒè·³åŒ…åˆ™ä¸å¤„ç†
 			msg=null;	
 			break;
 		case TOPIC_SUBSCRIBE:
@@ -26,7 +26,7 @@ public class MessageProcessHandler extends SimpleChannelInboundHandler<Message> 
 			ctx.fireChannelRead(msg);
 			break;
 		default:
-			//ÆäËüÇé¿öÔòÖ±½Ó¶Ï¿ªÁ¬½Ó
+			//å…¶å®ƒæƒ…å†µåˆ™ç›´æ¥æ–­å¼€è¿æ¥
 			ctx.close();
 			break;	
 		}

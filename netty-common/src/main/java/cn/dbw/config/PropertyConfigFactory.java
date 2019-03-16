@@ -31,7 +31,7 @@ public class PropertyConfigFactory implements ConfigFactory{
 			serverConfig.setRetryCount(Integer.parseInt(config.get("server.retryCount")));
 			serverConfig.setEnableCluster(Boolean.parseBoolean(config.get("server.enableCluster")));
 			
-			//ÉèÖÃzkÅäÖÃ
+			//è®¾ç½®zké…ç½®
 			serverConfig.setZkServers(config.get("zkServer.servers"));
 			serverConfig.setZkSessionTimeout(Integer.parseInt(config.get("zkServer.sessionTimeout")));
 			serverConfig.setZkRootPath(config.get("zkServer.rootPath"));

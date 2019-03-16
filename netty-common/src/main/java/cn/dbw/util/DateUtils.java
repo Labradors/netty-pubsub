@@ -8,7 +8,7 @@ public class DateUtils {
 
 	    public static String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-	    public static String DATE_FORMAT_CHINESE = "yyyyÄêMÔÂdÈÕ";
+	    public static String DATE_FORMAT_CHINESE = "yyyyå¹´Mæœˆdæ—¥";
 
 
  

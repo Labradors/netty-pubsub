@@ -15,12 +15,12 @@ public class ChanelInitializerHandler extends ChannelInitializer {
 	       ChannelPipeline pipeline = ch.pipeline();
 	       pipeline.addLast(new IdleStateHandler(0,0,35));
 	       pipeline.addLast(new IdleStateTrigger());
-	       //Éè¼Æ°üµÄ¸ñÊ½ 1×Ö½Ú¹Ì¶¨°üÍ·  1×Ö½Ú¹¦ÄÜÂë  1×Ö½Ú£¨ÅĞ¶ÏÊÇ·ñ°üº¬topic×Ö¶Î£© 4×Ö½Ú¹Ì¶¨³¤¶È×Ö¶Î   12×Ö½Ú¹Ì¶¨topic£¨·Ç±ØĞë£©  Ê£Óà×Ö½ÚÊı¾İ
+	       //è®¾è®¡åŒ…çš„æ ¼å¼ 1å­—èŠ‚å›ºå®šåŒ…å¤´  1å­—èŠ‚åŠŸèƒ½ç   1å­—èŠ‚ï¼ˆåˆ¤æ–­æ˜¯å¦åŒ…å«topicå­—æ®µï¼‰ 4å­—èŠ‚å›ºå®šé•¿åº¦å­—æ®µ   12å­—èŠ‚å›ºå®štopicï¼ˆéå¿…é¡»ï¼‰  å‰©ä½™å­—èŠ‚æ•°æ®
 	       pipeline.addLast(new LengthFieldBasedFrameDecoder(2048, 3, 4, 0, 0));
 	       pipeline.addLast(new MessageToPoDecoder());
-	       //Ìí¼ÓÈÏÖ¤µÄ´¦ÀíÆ÷
+	       //æ·»åŠ è®¤è¯çš„å¤„ç†å™¨
 	       //pipeline.addLast("auth",new AuthenticationHandler());
-	       //Ìí¼ÓĞ­Òé´¦ÀíÆ÷
+	       //æ·»åŠ åè®®å¤„ç†å™¨
 	       pipeline.addLast( "message-process", new MessageProcessHandler());
 	       pipeline.addLast(new MessageEncoder());
 	       //pipeline.addLast("auth",new AuthenticationHandler());

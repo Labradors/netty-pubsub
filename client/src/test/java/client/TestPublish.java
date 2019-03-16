@@ -26,7 +26,7 @@ public class TestPublish {
 //			}
 //		});
 //		for(int i=0;i<10000;i++){
-//			client.publish("haha","ÄãºÃ°¡°¡°¡°¡"+i);
+//			client.publish("haha","ä½ å¥½å•Šå•Šå•Šå•Š"+i);
 //		}
 		
 		//ChannelHolder.getChannel().close();

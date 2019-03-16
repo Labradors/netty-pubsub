@@ -12,15 +12,15 @@ import cn.dbw.config.ZkConstants;
 import jodd.util.StringUtil;
 
 /**
- * zk½ÚµãÊı¾İ½ÓÊÕÕß
+ * zkèŠ‚ç‚¹æ•°æ®æ¥æ”¶è€…
  * @author dbw
  *
  */
 public class ZKReceiver {
 	
-	/** zookeeperµ¥½ÚµãµØÖ· */
+	/** zookeeperå•èŠ‚ç‚¹åœ°å€ */
 	static final String CONNECT_ADDR_SINGLE="127.0.0.1:2181";
-	/** session³¬Ê±Ê±¼ä */
+	/** sessionè¶…æ—¶æ—¶é—´ */
 	static final int SESSION_OUTTIME = 10000;//ms
 	
 	private final Logger LOGGER=Logger.getLogger(ZKReceiver.class);
@@ -41,7 +41,7 @@ public class ZKReceiver {
 	
 	
 	/**
-	 * »ñÈ¡´æ»îµÄbroker
+	 * è·å–å­˜æ´»çš„broker
 	 * @return
 	 */
 	public Set<String> getActiveBroker(){

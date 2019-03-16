@@ -8,7 +8,7 @@ import cn.dbw.dto.Message;
 import cn.dbw.util.MD5Util;
 
 /**
- * 上一次登陆记录表
+ * 涓婁竴娆＄櫥闄嗚褰曡〃
  * @author dbw
  *
  */

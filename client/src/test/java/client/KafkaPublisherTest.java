@@ -17,9 +17,9 @@ public class KafkaPublisherTest {
         properties.put("linger.ms", 1);
         properties.put("buffer.memory", 33554432);
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        //默认值为字符串序列化
+        //榛樿鍊间负瀛楃涓插簭鍒楀寲
         properties.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-        //设置自定义序列化
+        //璁剧疆鑷畾涔夊簭鍒楀寲
        // properties.put("value.serializer", "client.KafkaSerialization");
         Producer<String, String> producer = null;
         

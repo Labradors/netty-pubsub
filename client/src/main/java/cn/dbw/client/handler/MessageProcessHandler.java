@@ -13,7 +13,7 @@ public class MessageProcessHandler extends SimpleChannelInboundHandler<Message>{
 	
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws Exception {
-		//·ÅÈëdisruptorÈÝÆ÷ÖÐ
+		//æ”¾å…¥disruptorå®¹å™¨ä¸­
 		String producerId = "product:sessionId:001";
 	    MessageProducer messageProducer = RingBufferWorkerPoolFactory.getInstance().getMessageProducer(producerId);
 	    messageProducer.onData(ctx, msg);

@@ -3,7 +3,7 @@ package cn.dbw.exception;
 public class IllegalDataHeaderException extends RuntimeException {
 	
 	public IllegalDataHeaderException(byte msg) {
-		super("·Ç·¨µÄÊý¾ÝÍ·²¿->"+msg);
+		super("éžæ³•çš„æ•°æ®å¤´éƒ¨->"+msg);
 	}
 
 }

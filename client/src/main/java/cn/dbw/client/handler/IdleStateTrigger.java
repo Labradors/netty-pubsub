@@ -33,10 +33,10 @@ public class IdleStateTrigger extends ChannelInboundHandlerAdapter {
             IdleState state = ((IdleStateEvent) evt).state();
             switch (state){
                 case READER_IDLE:
-                	 //�����¼�����������
-                    //System.out.println("����������\t"+ DateUtils.getCurrentDateTime());
-                    //ctx.channel().writeAndFlushֱ�Ӵ�outβ�����һ��handler��ջ
-                    //ctx.writeAndFlush �ӵ�ǰ����һ����β�˳�ջ
+                	 //触发事件发送心跳包
+                    //System.out.println("发送心跳包\t"+ DateUtils.getCurrentDateTime());
+                    //ctx.channel().writeAndFlush直接从out尾端最后一个handler出栈
+                    //ctx.writeAndFlush 从当前链逐一到达尾端出栈
                     ChannelFuture channelFuture = ctx.channel().writeAndFlush(HEARTBEATE.clone());
                     channelFuture.addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
                     break;
@@ -49,12 +49,12 @@ public class IdleStateTrigger extends ChannelInboundHandlerAdapter {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
     	 if(!ctx.executor().isShuttingDown()){
-    		 System.out.println("�����ѶϿ���������\t"+ DateUtils.getCurrentDateTime());
+    		 System.out.println("连接已断开尝试重连\t"+ DateUtils.getCurrentDateTime());
     		 super.channelInactive(ctx);
     	     ChannelHolder.setChannel(null);
     	     CLIENT.start();
     	 }else{
-    		 System.out.println("ϵͳ���ڹر�...");
+    		 System.out.println("系统正在关闭...");
     	 }
     }
 }

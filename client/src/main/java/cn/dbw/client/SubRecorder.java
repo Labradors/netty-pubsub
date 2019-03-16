@@ -7,7 +7,7 @@ import cn.dbw.config.FuncodeEnum;
 import cn.dbw.dto.Message;
 
 /**
- * ¶©ÔÄ¼ÇÂ¼Õß
+ * è®¢é˜…è®°å½•è€…
  * @author dbw
  *
  */

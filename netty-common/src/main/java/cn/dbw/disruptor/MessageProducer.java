@@ -19,15 +19,15 @@ public class MessageProducer {
 	}
 	
 	public void onData(ChannelHandlerContext ctx,Message message){
-		//»ñÈ¡ÏÂÒ»¸ö¿ÉÓÃµÄĞòÁĞºÅ
+		//è·å–ä¸‹ä¸€ä¸ªå¯ç”¨çš„åºåˆ—å·
 		long sequence = ringBuffer.next();
 		try {
-			//»ñÈ¡´ıÌî³äÊı¾İ
+			//è·å–å¾…å¡«å……æ•°æ®
 			MessageWrapper messageWrapper = ringBuffer.get(sequence);
 			messageWrapper.setCtx(ctx);
 			messageWrapper.setMessage(message);
 		} finally {
-			//·¢²¼Êı¾İ
+			//å‘å¸ƒæ•°æ®
 			ringBuffer.publish(sequence);
 		}
 	}

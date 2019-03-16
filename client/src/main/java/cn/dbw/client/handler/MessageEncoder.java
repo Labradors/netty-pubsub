@@ -13,14 +13,14 @@ public class MessageEncoder extends MessageToByteEncoder<Message> {
 		out.writeByte(msg.getFunCode().getCode());
 		out.writeByte(msg.getIsHaveTopic());
 		if(msg.getIsHaveTopic()==1){
-			out.writeInt(msg.getBodyLength()+12);//¼ÓÉÏtopic×Ö¶Î¹Ì¶¨³¤¶È12
+			out.writeInt(msg.getBodyLength()+12);//åŠ ä¸Štopicå­—æ®µå›ºå®šé•¿åº¦12
 			out.writeBytes(msg.getTopic());
 		}else{
 			out.writeInt(msg.getBodyLength());
 		}
 		out.writeBytes(msg.getData());
-		//System.out.println("¿Í»§¶Ë·¢³ö"+msg);
-		//System.out.println("±¨ÎÄ£º"+out);
+		//System.out.println("å®¢æˆ·ç«¯å‘å‡º"+msg);
+		//System.out.println("æŠ¥æ–‡ï¼š"+out);
 	}
 
 }

@@ -30,13 +30,13 @@ public class TestClient {
 //		client.subscribe("data", new SubscribListener() {
 //			@Override
 //			public void subOk(Message message) {
-//				System.out.println("¶©ÔÄ³É¹¦");
+//				System.out.println("è®¢é˜…æˆåŠŸ");
 //			}
 //			
 //			@Override
 //			public void msgActive(Message message) {
 //				try {
-//					System.out.println("ÊÕµ½ÏûÏ¢£º"+new String(message.getData(),"utf-8"));
+//					System.out.println("æ”¶åˆ°æ¶ˆæ¯ï¼š"+new String(message.getData(),"utf-8"));
 //				} catch (UnsupportedEncodingException e) {
 //					// TODO Auto-generated catch block
 //					e.printStackTrace();
@@ -47,13 +47,13 @@ public class TestClient {
 		client.subscribe("mm", new SubscribListener() {
 			@Override
 			public void subOk(Message message) {
-				System.out.println("¶©ÔÄ³É¹¦");
+				System.out.println("è®¢é˜…æˆåŠŸ");
 			}
 			
 			@Override
 			public void msgActive(Message message) {
 				try {
-					System.out.println("ÊÕµ½ÏûÏ¢mm£º"+new String(message.getData(),"utf-8"));
+					System.out.println("æ”¶åˆ°æ¶ˆæ¯mmï¼š"+new String(message.getData(),"utf-8"));
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -65,7 +65,7 @@ public class TestClient {
 			@Override
 			public void msgActive(Message message) {
                    try {
-					System.out.println("½ÓÊÕ¹ã²¥ÏûÏ¢£º"+new String(message.getData(),"utf-8"));
+					System.out.println("æ¥æ”¶å¹¿æ’­æ¶ˆæ¯ï¼š"+new String(message.getData(),"utf-8"));
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -73,7 +73,7 @@ public class TestClient {
 			}
 		});
 		
-		//client.publish("mm", "¹ş¹ş");
+		//client.publish("mm", "å“ˆå“ˆ");
 		//client.shutdown();
 	}
 

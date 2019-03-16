@@ -47,9 +47,9 @@ public class HttpServer implements Server{
 			@Override
 			protected void initChannel(SocketChannel ch) throws Exception {
 				ch.pipeline().addLast("http-decoder",new HttpRequestDecoder());
-				ch.pipeline().addLast("http-aggregator",new HttpObjectAggregator(65535));//½«¶à¸öÏûÏ¢×ª»¯³ÉÒ»¸ö
+				ch.pipeline().addLast("http-aggregator",new HttpObjectAggregator(65535));//å°†å¤šä¸ªæ¶ˆæ¯è½¬åŒ–æˆä¸€ä¸ª
 				ch.pipeline().addLast("http-encoder",new HttpResponseEncoder());
-				ch.pipeline().addLast("http-chunked",new ChunkedWriteHandler());//½â¾ö´óÂëÁ÷µÄÎÊÌâ
+				ch.pipeline().addLast("http-chunked",new ChunkedWriteHandler());//è§£å†³å¤§ç æµçš„é—®é¢˜
 				ch.pipeline().addLast("http-server",new HttpHandler());
 			}
 		});
@@ -61,9 +61,9 @@ public class HttpServer implements Server{
 				public void operationComplete(Future<? super Void> future) throws Exception {
 				   
 					if(future.isSuccess()||future.isDone()){
-						LOGGER.info("¡¾http-serverÒÑÆô¶¯¡¿ip->"+config.getConfig(null).getHost()+" port->"+8888);
+						LOGGER.info("ã€http-serverå·²å¯åŠ¨ã€‘ip->"+config.getConfig(null).getHost()+" port->"+8888);
 					}else{
-						LOGGER.info("¡¾http-server¡¿Æô¶¯Ê§°Ü");
+						LOGGER.info("ã€http-serverã€‘å¯åŠ¨å¤±è´¥");
 					}
 					
 				}
@@ -87,7 +87,7 @@ public class HttpServer implements Server{
 			bossGroup.shutdownGracefully();
 		}
 		
-		LOGGER.info("¡¾http-server¡¿¹Ø±Õ³É¹¦");
+		LOGGER.info("ã€http-serverã€‘å…³é—­æˆåŠŸ");
 		
 	}
 

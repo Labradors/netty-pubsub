@@ -21,7 +21,7 @@ public class NettyPubAndSubClient implements PubAndSubClient,Authable{
 	
 	
 	public static NettyPubAndSubClient getInstance(){
-		//初始化Disruptor容器
+		//鍒濆鍖朌isruptor瀹瑰櫒
 		 DisruptorBoot.getInstance().init(4, MessageConsumerImpl4Client.class);
 		 return nettyPubAndSubClient;
 	}
@@ -46,7 +46,7 @@ public class NettyPubAndSubClient implements PubAndSubClient,Authable{
     
 	}
     
-    //是否接收广播消息
+    //鏄惁鎺ユ敹骞挎挱娑堟伅
     public NettyPubAndSubClient acceptBraodCast(SubscribListener subscribListener){
     	subscribe(FuncodeEnum.MESSAGE_BROAD.name().concat("$"), subscribListener);
     	return this;
@@ -56,7 +56,7 @@ public class NettyPubAndSubClient implements PubAndSubClient,Authable{
 	@Override
 	public void auth(String username, String password, AutuListener autuListener) {
 		if(!checkConnect()){
-			throw new RuntimeException("请连接后重试");
+			throw new RuntimeException("璇疯繛鎺ュ悗閲嶈瘯");
 		}
 		EventBus.setAutuListener(autuListener);
 		JSONObject jsonObject = new JSONObject();

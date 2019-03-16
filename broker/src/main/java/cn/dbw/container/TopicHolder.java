@@ -7,21 +7,21 @@ import io.netty.channel.Channel;
 
 public interface TopicHolder {
 	
-	//删除主题
+	//鍒犻櫎涓婚
     void remove(byte[] topic);
-    //取消单个订阅主题对象
+    //鍙栨秷鍗曚釜璁㈤槄涓婚瀵硅薄
     void remove(byte[] topic,Channel channel);
-    //通过channel 移除从所有主题中移除
+    //閫氳繃channel 绉婚櫎浠庢墍鏈変富棰樹腑绉婚櫎
     void remove(Channel channel);
     
-    //订阅主题
+    //璁㈤槄涓婚
     void subscribe(byte[] topic,Channel channel);
     
     
-    //获取主题
+    //鑾峰彇涓婚
     Set<Channel> getTopic(byte [] topic);
     
-    //获取订阅容器
+    //鑾峰彇璁㈤槄瀹瑰櫒
     public Map<String, Set<Channel>> getTopicContainner();
     
     

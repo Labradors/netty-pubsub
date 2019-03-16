@@ -22,8 +22,8 @@ public class DisruptorBoot {
 	
     /**
      * 
-     * @param coreSize Ïû·ÑÕßºËĞÄÊıÁ¿ ½¨ÒéÎªcpuºÍÊı
-     * @param clazz  Ïû·ÑÕßÀàĞÍ
+     * @param coreSize æ¶ˆè´¹è€…æ ¸å¿ƒæ•°é‡ å»ºè®®ä¸ºcpuå’Œæ•°
+     * @param clazz  æ¶ˆè´¹è€…ç±»å‹
      */
 	public  void init(int coreSize,Class<? extends MessageConsumer> clazz){
 		MessageConsumer[] conusmers = new MessageConsumer[coreSize];

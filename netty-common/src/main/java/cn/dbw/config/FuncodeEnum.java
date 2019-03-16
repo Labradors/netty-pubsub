@@ -1,27 +1,27 @@
 package cn.dbw.config;
 
 /**
- * ¹¦ÄÜÂë
+ * åŠŸèƒ½ç 
  * @author dbw
  *
  */
 public enum FuncodeEnum {
 	
-	HEART_BEAT("ĞÄÌø",(byte)1),
-	AUTH_USER("ÓÃ»§ÈÏÖ¤",(byte)2),
-	MESSAGE_SEND("ÏûÏ¢·¢ËÍ",(byte)3),
-	MESSAGE_BROAD("ÏûÏ¢¹ã²¥",(byte)11),
-	ERROR_INFO("´íÎóĞÅÏ¢",(byte)4),
-	TOPIC_SUBSCRIBE("ÏûÏ¢¶©ÔÄ",(byte)5),
-	TOPIC_UNSUBSCRIBE("È¡Ïû¶©ÔÄ",(byte)6),
-	NOTICE_SUBSCRIBE_OK("¶©ÔÄ³É¹¦Í¨Öª",(byte)7),
-	NOTICE_UNSUBSCRIBE_OK("È¡Ïû¶©ÔÄÍ¨Öª",(byte)8),
-	NOTICE_AUTH_OK("ÈÏÖ¤³É¹¦Í¨Öª",(byte)9),
-	NOTICE_AUTH_FAIL("ÈÏÖ¤Ê§°ÜÍ¨Öª",(byte)10),
+	HEART_BEAT("å¿ƒè·³",(byte)1),
+	AUTH_USER("ç”¨æˆ·è®¤è¯",(byte)2),
+	MESSAGE_SEND("æ¶ˆæ¯å‘é€",(byte)3),
+	MESSAGE_BROAD("æ¶ˆæ¯å¹¿æ’­",(byte)11),
+	ERROR_INFO("é”™è¯¯ä¿¡æ¯",(byte)4),
+	TOPIC_SUBSCRIBE("æ¶ˆæ¯è®¢é˜…",(byte)5),
+	TOPIC_UNSUBSCRIBE("å–æ¶ˆè®¢é˜…",(byte)6),
+	NOTICE_SUBSCRIBE_OK("è®¢é˜…æˆåŠŸé€šçŸ¥",(byte)7),
+	NOTICE_UNSUBSCRIBE_OK("å–æ¶ˆè®¢é˜…é€šçŸ¥",(byte)8),
+	NOTICE_AUTH_OK("è®¤è¯æˆåŠŸé€šçŸ¥",(byte)9),
+	NOTICE_AUTH_FAIL("è®¤è¯å¤±è´¥é€šçŸ¥",(byte)10),
 	;
 	
-	private String desc;//¹¦ÄÜÃèÊö
-	private Byte code;  //¹¦ÄÜÂë
+	private String desc;//åŠŸèƒ½æè¿°
+	private Byte code;  //åŠŸèƒ½ç 
 
 	
 	private FuncodeEnum(String desc, Byte code) {
@@ -42,7 +42,7 @@ public enum FuncodeEnum {
 	}
 	
 	 /**
-     * °ïÖúÀà ¸ú¾İcode×Ö¶Î»ñÈ¡eumÊµÀı
+     * å¸®åŠ©ç±» è·Ÿæ®codeå­—æ®µè·å–eumå®ä¾‹
      * @param type
      * @return
      */

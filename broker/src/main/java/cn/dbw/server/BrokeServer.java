@@ -50,15 +50,15 @@ public class BrokeServer implements Server {
 				@Override
 				public void operationComplete(Future<? super Void> future) throws Exception {   
 					if(future.isSuccess()||future.isDone()){
-						LOGGER.info("¡¾brokerÒÑÆô¶¯¡¿ip->"+config.getConfig().getHost()+" port->"+config.getConfig().getPort());
+						LOGGER.info("ã€brokerå·²å¯åŠ¨ã€‘ip->"+config.getConfig().getHost()+" port->"+config.getConfig().getPort());
 					}else{
-						LOGGER.info("¡¾broker¡¿Æô¶¯Ê§°Ü");
+						LOGGER.info("ã€brokerã€‘å¯åŠ¨å¤±è´¥");
 					}
 				}
 			});
-			//ÅĞ¶ÏÊÇ·ñ¿ªÆô¼¯Èº
+			//åˆ¤æ–­æ˜¯å¦å¼€å¯é›†ç¾¤
 			if(config.getConfig().getEnableCluster()){
-				//Èô¿ªÆô¼¯ÈºÄ£Ê½£¬ÔòÆô¶¯×¢²ázookeeper
+				//è‹¥å¼€å¯é›†ç¾¤æ¨¡å¼ï¼Œåˆ™å¯åŠ¨æ³¨å†Œzookeeper
 				ServerConfig serverConfig = config.getConfig();
 				ZkRegister.getInstance().register(serverConfig.getZkRootPath()+"/broker_",serverConfig.getHost()+":"+serverConfig.getPort());
 			}
@@ -80,10 +80,10 @@ public class BrokeServer implements Server {
 			boss.shutdownGracefully();
 		}
 		
-		//¹Ø±Õzk¿Í»§¶ËÁ¬½Ó
+		//å…³é—­zkå®¢æˆ·ç«¯è¿æ¥
 		ZkRegister.getInstance().close();
 		
-		LOGGER.info("¡¾broker¡¿¹Ø±Õ³É¹¦");
+		LOGGER.info("ã€brokerã€‘å…³é—­æˆåŠŸ");
 	}
 	
 	

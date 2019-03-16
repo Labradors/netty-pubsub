@@ -16,31 +16,31 @@ public class MessageToPoDecoder extends ReplayingDecoder<Void> {
 	
 	private final byte BODY_HEAD=(byte) 0xA8;
     
-	 //Ğ­Òé¸ñÊ½ 1×Ö½Ú¹Ì¶¨°üÍ·  1×Ö½Ú¹¦ÄÜÂë  1×Ö½Ú£¨ÅĞ¶ÏÊÇ·ñ°üº¬topic×Ö¶Î£© 4×Ö½Ú¹Ì¶¨³¤¶È×Ö¶Î   12×Ö½Ú¹Ì¶¨topic£¨·Ç±ØĞë£©  Ê£Óà×Ö½ÚÊı¾İ
+	 //åè®®æ ¼å¼ 1å­—èŠ‚å›ºå®šåŒ…å¤´  1å­—èŠ‚åŠŸèƒ½ç   1å­—èŠ‚ï¼ˆåˆ¤æ–­æ˜¯å¦åŒ…å«topicå­—æ®µï¼‰ 4å­—èŠ‚å›ºå®šé•¿åº¦å­—æ®µ   12å­—èŠ‚å›ºå®štopicï¼ˆéå¿…é¡»ï¼‰  å‰©ä½™å­—èŠ‚æ•°æ®
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
-		//System.out.println("·şÎñÆ÷ÊÕµ½");
-		byte fixHead = in.readByte();//¶ÁÈ¡¹Ì¶¨Í·²¿ 0xA8
+		//System.out.println("æœåŠ¡å™¨æ”¶åˆ°");
+		byte fixHead = in.readByte();//è¯»å–å›ºå®šå¤´éƒ¨ 0xA8
 		if(!checkHead(fixHead)){
-			System.out.println("·şÎñÆ÷ÊÕµ½Í·²¿£º"+fixHead);
+			System.out.println("æœåŠ¡å™¨æ”¶åˆ°å¤´éƒ¨ï¼š"+fixHead);
 			ctx.channel().close();
 			throw new IllegalDataHeaderException(fixHead);
 		}
-		byte funCode = in.readByte();//¶ÁÈ¡¹¦ÄÜÂë
-		byte ishaveTopic = in.readByte(); //¶ÁÈ¡ÅĞ¶Ï×Ö¶Î
-		int bodyLength=in.readInt(); //¶ÁÈ¡¹Ì¶¨Êı¾İ³¤¶È×Ö¶Î 
+		byte funCode = in.readByte();//è¯»å–åŠŸèƒ½ç 
+		byte ishaveTopic = in.readByte(); //è¯»å–åˆ¤æ–­å­—æ®µ
+		int bodyLength=in.readInt(); //è¯»å–å›ºå®šæ•°æ®é•¿åº¦å­—æ®µ 
 	    byte[] topic=null;
 	    byte[] body=null;
 	    if(ishaveTopic==1){
 	    	topic=new byte[12];
 	    	in.readBytes(topic);
-	    	bodyLength=bodyLength-12; //ÈôÓĞtopicÖ÷Ìâ×Ö¶Î Ôò¶ÁÈ¡bodyÌå×Ö¶Î³¤¶È-12
+	    	bodyLength=bodyLength-12; //è‹¥æœ‰topicä¸»é¢˜å­—æ®µ åˆ™è¯»å–bodyä½“å­—æ®µé•¿åº¦-12
 	    }
-//	    int readableBytes = in.readableBytes();//»ñÈ¡Ê£Óà¿É¶ÁÊı
-//	    System.out.println("·şÎñÆ÷Ê£Óà¿É¶ÁÈ¡£º"+readableBytes);
+//	    int readableBytes = in.readableBytes();//è·å–å‰©ä½™å¯è¯»æ•°
+//	    System.out.println("æœåŠ¡å™¨å‰©ä½™å¯è¯»å–ï¼š"+readableBytes);
 	    	body=new byte[bodyLength];
 	    	in.readBytes(body);
-	    //System.out.println("Ìí¼ÓMSG¹¦ÄÜÂë£º"+FuncodeEnum.getEumInstanceByType(funCode));
+	    //System.out.println("æ·»åŠ MSGåŠŸèƒ½ç ï¼š"+FuncodeEnum.getEumInstanceByType(funCode));
 	    out.add(new Message(FuncodeEnum.getEumInstanceByType(funCode), ishaveTopic, topic,bodyLength, body));
 		
 //		
@@ -55,7 +55,7 @@ public class MessageToPoDecoder extends ReplayingDecoder<Void> {
 //			   int length = in.readInt();
 //			   ByteBuf byteBuf = in.readBytes(length);
 //			   byte[] data = byteBuf.array();
-//			   //·´ĞòÁĞ»¯data×ªÎªmessage po
+//			   //ååºåˆ—åŒ–dataè½¬ä¸ºmessage po
 //			   Message message = SerializationUtil.deserialize(data, Message.class);
 //			   out.add(message);
 //			   break;
@@ -66,7 +66,7 @@ public class MessageToPoDecoder extends ReplayingDecoder<Void> {
 	
 	
 	/**
-	 * °üÍ·Ğ£Ñé
+	 * åŒ…å¤´æ ¡éªŒ
 	 * @param b
 	 * @return
 	 */

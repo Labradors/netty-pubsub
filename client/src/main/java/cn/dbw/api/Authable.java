@@ -4,6 +4,6 @@ import cn.dbw.api.PubAndSubClient.AutuListener;
 
 public interface Authable {
 
-    //¿Í»§¶ËÈÏÖ¤
+    //å®¢æˆ·ç«¯è®¤è¯
 	void auth(String username,String password,AutuListener autuListener);
 }

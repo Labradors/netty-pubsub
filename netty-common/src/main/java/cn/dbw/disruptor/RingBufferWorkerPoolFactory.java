@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 
-import com.bfxy.entity.TranslatorDataWapper;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.ExceptionHandler;
 import com.lmax.disruptor.RingBuffer;
@@ -43,15 +42,15 @@ public class RingBufferWorkerPoolFactory {
 	
 	/**
 	 * 
-	 * @param type  Éú³ÉÕâÀàĞÍ  µ¥Éú²úÕß ¶àÉú²úÕß
-	 * @param bufferSize  ringbufferµÄÈİÁ¿
-	 * @param waitStrategy   µÈ´ı²ßÂÔ
-	 * @param messageConsumers  Ïû·ÑÕß
+	 * @param type  ç”Ÿæˆè¿™ç±»å‹  å•ç”Ÿäº§è€… å¤šç”Ÿäº§è€…
+	 * @param bufferSize  ringbufferçš„å®¹é‡
+	 * @param waitStrategy   ç­‰å¾…ç­–ç•¥
+	 * @param messageConsumers  æ¶ˆè´¹è€…
 	 */
 	@SuppressWarnings("unchecked")
 	public void initAndStart(ProducerType type, int bufferSize, WaitStrategy waitStrategy, MessageConsumer[] messageConsumers) {
 		if(!startFlag){
-		//1. ¹¹½¨ringBuffer¶ÔÏó
+		//1. æ„å»ºringBufferå¯¹è±¡
 		this.ringBuffer = RingBuffer.create(type,
 				new EventFactory<MessageWrapper>() {
 					public MessageWrapper newInstance() {
@@ -60,21 +59,21 @@ public class RingBufferWorkerPoolFactory {
 				},
 				bufferSize,
 				waitStrategy);
-		//2.ÉèÖÃĞòºÅÕ¤À¸
+		//2.è®¾ç½®åºå·æ …æ 
 		this.sequenceBarrier = this.ringBuffer.newBarrier();
-		//3.ÉèÖÃ¹¤×÷³Ø
+		//3.è®¾ç½®å·¥ä½œæ± 
 		this.workerPool = new WorkerPool(this.ringBuffer,
 				this.sequenceBarrier, 
 				new EventExceptionHandler(), messageConsumers);
-		//4 °ÑËù¹¹½¨µÄÏû·ÑÕßÖÃÈë³ØÖĞ
+		//4 æŠŠæ‰€æ„å»ºçš„æ¶ˆè´¹è€…ç½®å…¥æ± ä¸­
 		for(MessageConsumer mc : messageConsumers){
 			this.consumers.put(mc.getConsumerId(), mc);
 		}
-		//5 Ìí¼ÓÎÒÃÇµÄsequences
+		//5 æ·»åŠ æˆ‘ä»¬çš„sequences
 		this.ringBuffer.addGatingSequences(this.workerPool.getWorkerSequences());
-		//6 Æô¶¯ÎÒÃÇµÄ¹¤×÷³Ø
+		//6 å¯åŠ¨æˆ‘ä»¬çš„å·¥ä½œæ± 
 		this.workerPool.start(Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()/2));
-		//7.ÉèÖÃÆô¶¯±êÖ¾£¬·ÀÖ¹ÖØ¸´Æô¶¯
+		//7.è®¾ç½®å¯åŠ¨æ ‡å¿—ï¼Œé˜²æ­¢é‡å¤å¯åŠ¨
 		startFlag=true;
 		}
 	}
@@ -90,12 +89,14 @@ public class RingBufferWorkerPoolFactory {
 	
 	
 	/**
-	 * Òì³£¾²Ì¬Àà
+	 * å¼‚å¸¸é™æ€ç±»
 	 * @author Alienware
 	 *
 	 */
-	static class EventExceptionHandler implements ExceptionHandler<TranslatorDataWapper> {
-		public void handleEventException(Throwable ex, long sequence, TranslatorDataWapper event) {
+	static class EventExceptionHandler implements ExceptionHandler {
+		@Override
+		public void handleEventException(Throwable throwable, long l, Object o) {
+
 		}
 
 		public void handleOnStartException(Throwable ex) {

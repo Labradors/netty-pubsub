@@ -10,7 +10,7 @@ import cn.dbw.dto.Message;
 import cn.dbw.po.MessageWrapper;
 import io.netty.channel.ChannelHandlerContext;
 
-//disruptorµÄÏû·ÑÕß
+//disruptorçš„æ¶ˆè´¹è€…
 public class MessageConsumerImpl4Server extends MessageConsumer{
 
 	private final Logger LOGGER=Logger.getLogger(MessageConsumerImpl4Server.class);
@@ -26,19 +26,19 @@ public class MessageConsumerImpl4Server extends MessageConsumer{
 		case TOPIC_SUBSCRIBE:
 			topicManager.subscribe(msg.getTopic(),ctx.channel());
 			ctx.channel().writeAndFlush(new Message(FuncodeEnum.NOTICE_SUBSCRIBE_OK, (byte)1, msg.getTopic(),"SUBOK".getBytes().length , "SUBOK".getBytes()));
-			LOGGER.info("¡¾Ö÷Ìâ¶©ÔÄ¡¿"+ctx.channel().remoteAddress().toString()+" topic-¡·"+new String(msg.getTopic(),"utf-8"));
+			LOGGER.info("ã€ä¸»é¢˜è®¢é˜…ã€‘"+ctx.channel().remoteAddress().toString()+" topic-ã€‹"+new String(msg.getTopic(),"utf-8"));
 			break;
 		case TOPIC_UNSUBSCRIBE:
 			topicManager.remove(msg.getTopic(), ctx.channel());
 			ctx.channel().writeAndFlush(new Message(FuncodeEnum.NOTICE_UNSUBSCRIBE_OK, (byte)1, msg.getTopic(),"UNSUBOK".getBytes().length , "UNSUBOK".getBytes()));
-			LOGGER.info("¡¾Ö÷ÌâÈ¡Ïû¶©ÔÄ¡¿"+ctx.channel().remoteAddress().toString()+" topic-¡·"+new String(msg.getTopic()));
+			LOGGER.info("ã€ä¸»é¢˜å–æ¶ˆè®¢é˜…ã€‘"+ctx.channel().remoteAddress().toString()+" topic-ã€‹"+new String(msg.getTopic()));
 			break;
 		case MESSAGE_SEND:
-			//LOGGER.info("¡¾·¢²¼ÏûÏ¢¡¿"+ctx.channel().remoteAddress().toString()+" topic-¡·"+new String(msg.getTopic(),"utf-8")+" msg-¡·"+new String(msg.getData(),"utf-8"));
+			//LOGGER.info("ã€å‘å¸ƒæ¶ˆæ¯ã€‘"+ctx.channel().remoteAddress().toString()+" topic-ã€‹"+new String(msg.getTopic(),"utf-8")+" msg-ã€‹"+new String(msg.getData(),"utf-8"));
 		    topicManager.publish(msg.getTopic(),msg.getData());
 			break;
 		case MESSAGE_BROAD:
-			//¹ã²¥ÏûÏ¢
+			//å¹¿æ’­æ¶ˆæ¯
 			topicManager.brodcast(msg.getData());
 			break;
 		}

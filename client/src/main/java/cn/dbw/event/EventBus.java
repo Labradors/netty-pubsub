@@ -28,7 +28,7 @@ public class EventBus {
 		public void onMsg(Message obj, FuncodeEnum funcodeEnum) {
 			switch (funcodeEnum) {
 			case NOTICE_AUTH_OK:
-				//认证成功保存登陆凭证
+				//璁よ瘉鎴愬姛淇濆瓨鐧婚檰鍑瘉
 				//LastLoginRecord.INSTANCE().setToken(obj);
 				if(autuListener!=null)
 					autuListener.authOk(obj);

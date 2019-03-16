@@ -16,17 +16,17 @@ public class Message implements Serializable ,Cloneable{
 	
 	private String id;
 	
-	private final byte BODY_HEAD=(byte) 0xA8; //¹Ì¶¨Í·²¿×Ö¶Î
+	private final byte BODY_HEAD=(byte) 0xA8; //å›ºå®šå¤´éƒ¨å­—æ®µ
 	
-	private FuncodeEnum funCode; //¹¦ÄÜÂë
+	private FuncodeEnum funCode; //åŠŸèƒ½ç 
 	
-	private byte isHaveTopic; //ÊÇ·ñ°üº¬12×Ö½Ú¶¨³¤Ö÷Ìâ×Ö¶Î  0 ²»°üº¬  1°üº¬
+	private byte isHaveTopic; //æ˜¯å¦åŒ…å«12å­—èŠ‚å®šé•¿ä¸»é¢˜å­—æ®µ  0 ä¸åŒ…å«  1åŒ…å«
 	
-	private byte[] topic;  //¹Ì¶¨12×Ö½Ú³¤¶ÈÖ÷Ìâ
+	private byte[] topic;  //å›ºå®š12å­—èŠ‚é•¿åº¦ä¸»é¢˜
 	
-	private int bodyLength; //bodyÊı¾İ³¤¶È
+	private int bodyLength; //bodyæ•°æ®é•¿åº¦
 	
-	private byte[] data;  //°üÌåÊı¾İ
+	private byte[] data;  //åŒ…ä½“æ•°æ®
 
    
 	

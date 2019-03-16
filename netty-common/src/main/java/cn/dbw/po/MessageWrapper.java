@@ -2,7 +2,7 @@ package cn.dbw.po;
 
 import cn.dbw.dto.Message;
 import io.netty.channel.ChannelHandlerContext;
-//2019/1/14  ÐÞ¸Ä
+//2019/1/14  ä¿®æ”¹
 public class MessageWrapper {
 	
 	

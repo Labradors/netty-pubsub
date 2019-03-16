@@ -20,8 +20,8 @@ public class TopicManagerHandler extends SimpleChannelInboundHandler<Message> {
     
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws Exception {
-		    //½»¸ødisruptorÉú²úÕß½øĞĞ¹ÜÀí
-    	    //×ÔÒÑµÄÓ¦ÓÃ·şÎñÓ¦¸ÃÓĞÒ»¸öIDÉú³É¹æÔò
+		    //äº¤ç»™disruptorç”Ÿäº§è€…è¿›è¡Œç®¡ç†
+    	    //è‡ªå·²çš„åº”ç”¨æœåŠ¡åº”è¯¥æœ‰ä¸€ä¸ªIDç”Ÿæˆè§„åˆ™
          	String producerId = "product:sessionId:001";
     	    MessageProducer messageProducer = RingBufferWorkerPoolFactory.getInstance().getMessageProducer(producerId);
     	    messageProducer.onData(ctx, msg);

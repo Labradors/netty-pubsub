@@ -4,43 +4,43 @@ import cn.dbw.api.PubAndSubClient.SubscribListener;
 import cn.dbw.dto.Message;
 
 public interface PubAndSubClient {
-	//¿Í»§¶ËÁ¬½Ó
+	//å®¢æˆ·ç«¯è¿æ¥
 	void connect(String host,Integer port);
 
-	//¿Í»§¶Ë¶©ÔÄÏûÏ¢
+	//å®¢æˆ·ç«¯è®¢é˜…æ¶ˆæ¯
 	void subscribe(String topic,SubscribListener subscribListener);
-	//¿Í»§¶ËÈ¡Ïû¶©ÔÄ
+	//å®¢æˆ·ç«¯å–æ¶ˆè®¢é˜…
 	void unsubscribe(String topic);
-	//¿Í»§¶Ë·¢²¼ÏûÏ¢
+	//å®¢æˆ·ç«¯å‘å¸ƒæ¶ˆæ¯
 	void publish(String topic,String str);
-	//¿Í»§¶Ë¹ã²¥
+	//å®¢æˆ·ç«¯å¹¿æ’­
 	void broadcast(String data);
 	
 	
 	public static interface AutuListener extends Listener{
-		//ÈÏÖ¤³É¹¦»Øµ÷
+		//è®¤è¯æˆåŠŸå›è°ƒ
 		void  authOk(Message message);
         
-		//ÈÏÖ¤Ê§°Ü»Øµ÷
+		//è®¤è¯å¤±è´¥å›è°ƒ
 		void authFail(Message message);
 	}
 	
 	/**
-	 * ¶©ÔÄ»Øµ÷½Ó¿Ú
+	 * è®¢é˜…å›è°ƒæ¥å£
 	 * @author dbw
 	 *
 	 */
 	public static interface SubscribListener extends Listener{
-		//¶©ÔÄ³É¹¦»Øµ÷
+		//è®¢é˜…æˆåŠŸå›è°ƒ
 		default void subOk(Message message){};
 		
-		//¶©ÔÄÊ§°Ü»Øµ÷
+		//è®¢é˜…å¤±è´¥å›è°ƒ
 //		default void subFail(Message message){};
 		
-		//ÏûÏ¢µ½´ï»Øµ÷
+		//æ¶ˆæ¯åˆ°è¾¾å›è°ƒ
 		default void msgActive(Message message){};
 		
-		//È¡Ïû¶©ÔÄ»Øµ÷
+		//å–æ¶ˆè®¢é˜…å›è°ƒ
 		default void unSubOk(Message message){};
 	    
 	}
